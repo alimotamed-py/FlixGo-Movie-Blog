@@ -1,0 +1,40 @@
+{% for post in posts %}
+<div class="col-6 col-sm-12 col-lg-6">
+    <div class="card card--list">
+        <div class="row">
+            <div class="col-12 col-sm-4">
+                <div class="card__cover">
+                    <img src="{{ post.cover.url }}" alt="{{ post.title }}" />
+                    <a href="{% url 'post:post_details' slug=post.slug %}" class="card__play">
+                        <i class="icon ion-ios-play"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-8">
+                <div class="card__content">
+                    <h3 class="card__title">
+                        <a href="{% url 'post:post_details' slug=post.slug %}">{{ post.title }}</a>
+                    </h3>
+
+                    {% if post.category.all %}
+                    <span class="card__category"><a href="{% url 'post:post_category' slug=post.category.all.0.slug  %}">{{ post.category.all.0.title }}</a></span>
+                    {% endif %}
+
+                    <div class="card__wrap">
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>{{ post.rating }}</span>
+                        <ul class="card__list">
+                            <li>{{ post.quality }}</li>
+                            <li>{{ post.age_rating }}</li>
+                        </ul>
+                    </div>
+
+                    <div class="card__description">
+                        <p>{{ post.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

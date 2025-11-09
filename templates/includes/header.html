@@ -1,0 +1,119 @@
+{% load static %}
+
+<header class="header">
+  <div class="header__wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="header__content">
+            <!-- header logo -->
+            <a href="{% url 'home:home' %}" class="header__logo"><img src="{% static 'img/logo.svg' %}" alt="FlixGo" /></a>
+            <!-- end header logo -->
+
+            <!-- header nav -->
+            <ul class="header__nav">
+              <!-- dropdown -->
+              <li class="header__nav-item">
+                <a href="{% url 'home:home' %}" class="header__nav-link">Home</a>
+              </li>
+              <!-- end dropdown -->
+
+              <!-- dropdown -->
+              <li class="header__nav-item">
+                <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catagory</a>
+
+                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
+             {% for cat in categories %}
+            <li>
+                <a href="{% url 'post:post_category' slug=cat.slug %}">{{ cat.title }}</a>
+            </li>
+        {% empty %}
+            <li>هیچ دسته‌ای موجود نیست</li>
+        {% endfor %}3
+                </ul>
+              </li>
+              <!-- end dropdown -->
+
+              <li class="header__nav-item">
+                <a href="{% url 'contact:contact' %}" class="header__nav-link">Contact Us</a>
+              </li>
+
+              <!-- dropdown -->
+              <li class="dropdown header__nav-item">
+                <a class="dropdown-toggle header__nav-link header__nav-link--more" href="#" role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon ion-ios-more"></i></a>
+
+                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
+                  <li>
+                    <a href="https://www.imdb.com/chart/top/">250 IMDB Movies</a>
+                  </li>
+                  <li>
+                    <a href="https://www.imdb.com/chart/toptv/">250 IMDB TV Series</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- end dropdown -->
+            </ul>
+            <!-- end header nav -->
+
+            <!-- header auth -->
+            <div class="header__auth">
+              <button class="header__search-btn" type="button"><i class="icon ion-ios-search"></i></button>
+
+              {% if request.user.is_authenticated %}
+                <li class="header__nav-item dropdown">
+                  <a class="dropdown-toggle header__nav-link user-name-color" href="#" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request.user.get_full_name|default:request.user.email }}</a>
+
+                  <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
+                    <li>
+                      <a href="{% url 'account:profile' %}">
+                        <i class="icon ion-ios-person"></i>
+                        <span class="header__username">Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'account:logout' %}">
+                        <i class="icon ion-ios-log-out"></i>
+                        <span>Logout</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              {% else %}
+                <a href="{% url 'account:login' %}" class="header__sign-in">
+                  <i class="icon ion-ios-log-in"></i>
+                  <span>Login</span>
+                </a>
+              {% endif %}
+            </div>
+
+            <!-- end header auth -->
+
+            <!-- header menu btn -->
+            <button class="header__btn" type="button">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+            <!-- end header menu btn -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- header search -->
+  <form action="{% url 'post:search' %}" class="header__search" method="GET">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="header__search-content">
+            <input type="text" name="q" placeholder="Search for a movie, TV Series that you are looking for" />
+
+            <button type="submit">search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- end header search -->
+</header>

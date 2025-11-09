@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  FlixGo – Home
+{% endblock %}
+
+{% block content %}
+  <!-- content -->
+  <section class="content">
+    <div class="content__head">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <!-- content title -->
+            <h2 class="content__title">New items</h2>
+            <!-- end content title -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="post-container">
+      <!-- content tabs -->
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
+          <div class="row" id="post-row">
+            <!-- card -->
+            {% include 'includes/post_list.html' %}
+            <!-- end card -->
+          </div>
+        </div>
+      </div>
+
+      <a href="javascript:void(0)" id="load-more-btn" class="section__btn" data-next-page="{{ page_obj.next_page_number|default:2 }}">Show more</a>
+
+      <!-- end content tabs -->
+    </div>
+  </section>
+  <!-- end content -->
+{% endblock %}
