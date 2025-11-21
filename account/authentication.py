@@ -1,7 +1,7 @@
 from .models import User
 
 
-# login with phone-number:
+#==================== LOGIN WITH PHONE NUMBER ====================
 class PhoneAuthBackend:
     def authenticate(self, request, username=None, password=None):
         # username = phoneNumber
@@ -19,7 +19,7 @@ class PhoneAuthBackend:
         except User.DoesNotExist:
             return None
 
-# login with Email:
+#==================== LOGIN WITH EMAIL ====================
 class EmailAuthBackend:
     def authenticate(self, request, username=None, password=None):
         # username = Email

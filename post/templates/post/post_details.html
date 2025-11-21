@@ -1,308 +1,308 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}{{ post.title }}{% endblock %}
 
-{% block title %}{{post.title}}{% endblock %}
+<!---------------------- details --------------------->
 
-  <!---------------------- details --------------------->
-
-  
-  {% block home %}{% endblock home %}
-    
+{% block home %}{% endblock home %}
 
 {% block content %}
-    
-<!-- details -->
-	<section class="section details">
-		<!-- details background -->
-		<div class="details__bg" data-bg="{{post.banner.url}}"></div>
-		<!-- end details background -->
 
-		<!-- details content -->
-		<div class="container">
-			<div class="row">
-				<!-- title -->
-				<div class="col-12">
-					<h1 class="details__title">{{post.title}}</h1>
-				</div>
-				<!-- end title -->
+    <!-- Details Section -->
+    <section class="section details">
 
-				<!-- content -->
-				<div class="col-10">
-					<div class="card card--details card--series">
-						<div class="row">
-							<!-- card cover -->
-							<div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-3">
-								<div class="card__cover">
-									<img src="{{post.cover.url}}" alt="{{post.title}}">
-								</div>
-							</div>
-							<!-- end card cover -->
+        <!-- Details Background -->
+        <div class="details__bg" data-bg="{{ post.banner.url }}"></div>
+        <!-- End Details Background -->
 
-							<!-- card content -->
-							<div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-9">
-								<div class="card__content">
-									<div class="card__wrap">
-										<span class="card__rate"><i class="icon ion-ios-star"></i>{{post.rating}}</span>
+        <!-- Details Content -->
+        <div class="container">
+            <div class="row">
 
-										<ul class="card__list">
-											<li>{{post.quality}}</li>
-											<li>{{post.age_rating}}</li>
-										</ul>
-									</div>
+                <!-- Title -->
+                <div class="col-12">
+                    <h1 class="details__title">{{ post.title }}</h1>
+                </div>
+                <!-- End Title -->
 
-									<ul class="card__meta">
-										<li><span>Category : </span> <a href="{% url 'post:post_category' slug=post.category.all.0.slug  %}">{{post.category.all.0}}</a>
-										<li><span>Genre : </span> <span>{{post.genre}}</span>
-										<li><span>Release year : </span>{{post.release_year}}</li>
-										<li><span>Running time : </span> {{post.running_time}} min</li>
-										<li><span>Country : </span> <a href="#">{{post.country}}</a> </li>
-										<li><span>Actors : </span> <a href="#"></a>{{post.actors}}</li>
-									</ul>
-								</div>
-							</div>
-							<!-- end card content -->
-						</div>
-					</div>
-				</div>
-				<!-- end content -->
+                <!-- Main Card Content -->
+                <div class="col-10">
+                    <div class="card card--details card--series">
+                        <div class="row">
 
-				<!-- player -->
-					<div class="row">
-					<!-- ویدیو -->
-					<div class="col-12 col-xl-6">
-						<video controls crossorigin playsinline poster="{{ post.banner.url }}" id="player" class="w-100">
-						<source src="{{post.video.url}}" type="video/mp4">
-						<a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" download>Download</a>
-						</video>
-					</div>
+                            <!-- Card Cover -->
+                            <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                                <div class="card__cover">
+                                    <img src="{{ post.cover.url }}" alt="{{ post.title }}">
+                                </div>
+                            </div>
+                            <!-- End Card Cover -->
 
-						<!-- description کنار ویدیو -->
-						<div class="col-12 col-xl-6">
-							<div class="card__description card__description--details" style="color: rgba(255, 255, 255, 0.7);">
-							{{ post.description }}
-							</div>
-						</div>
-                 </div>
-				<div class="col-12">
-					<div class="details__wrap">
-						<!-- share -->
-						<div class="details__share">
-							<strong class="details__share-title">Share with friends:</strong>
-							<div class="contact-social">
-								<div class="contact-social-links">
-									<a href="#" class="contact-social-link"><i class="icon ion-logo-instagram"></i></a>
-									<a href="#" class="contact-social-link"><i class="icon ion-logo-github"></i></a>
-									<a href="#" class="contact-social-link"><i class="icon ion-logo-linkedin"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- end share -->
-					</div>
-				</div>
+                            <!-- Card Details -->
+                            <div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-9">
+                                <div class="card__content">
+                                    <div class="card__wrap">
+                                        <span class="card__rate"><i class="icon ion-ios-star"></i>{{ post.rating }}</span>
 
+                                        <ul class="card__list">
+                                            <li>{{ post.quality }}</li>
+                                            <li>{{ post.age_rating }}</li>
+                                        </ul>
+                                    </div>
 
-			</div>
-		</div>
-		<!-- end details content -->
-	</section>
-	<!-- end details -->
-
-	<!---------------------- content --------------------->
-
-	<section class="content">
-		<div class="content__head">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<!-- content title -->
-						<h2 class="content__title">Discover</h2>
-						<!-- end content title -->
-
-						<!-- content tabs nav -->
-						<ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Comments</a>
-							</li>
-
-							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a>
-							</li>
-						</ul>
-						<!-- end content tabs nav -->
-
-						<!-- content mobile tabs nav -->
-						<div class="content__mobile-tabs" id="content__mobile-tabs">
-							<div class="content__mobile-tabs-btn dropdown-toggle" role="navigation" id="mobile-tabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<input type="button" value="Comments">
-								<span></span>
-							</div>
-
-							<div class="content__mobile-tabs-menu dropdown-menu" aria-labelledby="mobile-tabs">
-								<ul class="nav nav-tabs" role="tablist">
-									<li class="nav-item"><a class="nav-link active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Comments</a></li>
-
-									<li class="nav-item"><a class="nav-link" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a></li>
-								</ul>
-							</div>
-						</div>
-						<!-- end content mobile tabs nav -->
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-12 col-lg-8 col-xl-8">
-					<!-- content tabs -->
-					<div class="tab-content" id="myTabContent">
-						<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
-							<div class="row">
-								<!-- comments -->
-								<div class="col-12">
-									<div class="comments">
-										<ul class="comments__list">
-											{% for comment in comments %}
-												<li class="comments__item">
-													<div class="comments__autor">
-														{% if comment.user.profile_image %}
-															<img class="comments__avatar" src="{{ comment.user.profile_image.url }}" alt="{{ comment.user.username }}">
-														{% else %}
-															<img class="comments__avatar" src="{% static 'img/avatar.png' %}" alt="{{ comment.user.username }}">
-														{% endif %}
-														<span class="comments__name">{{ comment.user.get_full_name | default:comment.user.username }}</span>
-														<span class="comments__time">{{ comment.created_at|date:"d.m.Y, H:i" }}</span>
-													</div>
-														<p class="comments__text">{{ comment.content }}</p>
-														<div class="comments__actions">
-													<div class="comments__rate">
-													</div>
-													{% if user.is_authenticated %}
-													<button onclick="set_value({{ comment.id }})" type="button">
-														<i class="icon ion-ios-share-alt"></i>Reply</button>
-													{% endif %}
-												</div>
-													
-													
-														
-															
-															
-													
-
-
-												</li>
-
-												{% for reply in comment.replies.all %}
-													<li class="comments__item comments__item--answer" data-comment-id="{{ reply.id }}">
-														<div class="comments__autor">
-															{% if reply.user.profile_image %}
-																<img class="comments__avatar" src="{{ reply.user.profile_image.url }}" alt="{{ reply.user.username }}">
-															{% else %}
-																<img class="comments__avatar" src="{% static 'img/avatar.png' %}" alt="{{ reply.user.username }}">
-															{% endif %}
-															<span class="comments__name">{{ reply.user.get_full_name | default:reply.user.username }}</span>
-															<span class="comments__time">{{ reply.created_at|date:"d.m.Y, H:i" }}</span>
-														</div>
-														<p class="comments__text">{{ reply.content }}</p>
-														
-													</li>
-												{% endfor %}
-											{% endfor %}
-										</ul>
-
-
-										<form action="{% url 'post:add_comment' post.id %}" class="form" method="post">
-											{% csrf_token %}
-											{% if user.is_authenticated %}
-												<input type="hidden" id="parent_id" name="parent_id">
-												<textarea id="text" name="text" class="form__textarea" placeholder="Add comment"></textarea>
-											<button type="submit" class="form__btn">Send</button>
-											{% else %}
-											<strong style="color: rgba(255, 255, 255, 0.7);">
-												Hey! You need to 
-												<a href="{% url 'account:login' %}" style="color: #ff5860;"> LOGIN </a>
-												before commenting.
-											</strong>
-											{% endif %}
-										</form>
-									</div>
-								</div>
-								<!-- end comments -->
-							</div>
-						</div>
-
-						<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="3-tab">
-							<!-- project gallery -->
-							<div class="gallery" itemscope>
-								<div class="row">
-									<!-- gallery item -->
-									{% for photo in photos %}
-										<figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
-										<a href="{{photo.image.url}}" itemprop="contentUrl" data-size="1920x1280">
-											<img src="{{photo.image.url}}" itemprop="thumbnail" alt="Image description" />
-										</a>
-										<figcaption itemprop="caption description">Some image caption 1</figcaption>
-									</figure>
-									{% endfor %}
-									<!-- end gallery item -->
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- sidebar -->
-				<div class="col-12 col-lg-4 col-xl-4">
-    <div class="row">
-        <!-- section title -->
-        <div class="col-12">
-            <h2 class="section__title section__title--sidebar">You may also like...</h2>
-        </div>
-        <!-- end section title -->
-
-        <!-- card -->
-        {% for post in posts %}
-            <div class="col-6 col-sm-4 col-lg-6">
-                <div class="card">
-                    <div class="card__cover">
-                        <img src="{{ post.cover.url }}" alt="{{ post.title }}">
-                        <a href="{% url 'post:post_details' slug=post.slug %}" class="card__play">
-                            <i class="icon ion-ios-play"></i>
-                        </a>
+                                    <ul class="card__meta">
+                                        <li><span>Category : </span>
+                                            <a href="{% url 'post:post_category' slug=post.category.all.0.slug %}">{{ post.category.all.0 }}</a>
+                                        </li>
+                                        <li><span>Genre : </span> <span>{{ post.genre }}</span></li>
+                                        <li><span>Release year : </span>{{ post.release_year }}</li>
+                                        <li><span>Running time : </span> {{ post.running_time }} min</li>
+                                        <li><span>Country : </span> <a href="#">{{ post.country }}</a></li>
+                                        <li><span>Actors : </span> <a href="#"></a>{{ post.actors }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- End Card Details -->
+                        </div>
                     </div>
-                    <div class="card__content">
-                        <h3 class="card__title">
-                            <a href="{% url 'post:post_details' slug=post.slug %}">{{ post.title }}</a>
-                        </h3>
-                        <span class="card__category">
-                            {% with category=post.category.all|first %}
-                                {% if category %}
-                                    <a href="{% url 'post:post_category' slug=category.slug %}">{{ category.title }}</a>
-                                {% endif %}
-                            {% endwith %}
-                        </span>
-                        <span class="card__rate"><i class="icon ion-ios-star"></i>{{ post.rating }}</span>
+                </div>
+                <!-- End Main Card Content -->
+
+                <!-- Player Section -->
+                <div class="row">
+
+                    <!-- Video Player -->
+                    <div class="col-12 col-xl-6">
+                        <video controls crossorigin playsinline poster="{{ post.banner.url }}" id="player" class="w-100">
+                            <source src="{{ post.video.url }}" type="video/mp4">
+                            <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" download>Download</a>
+                        </video>
+                    </div>
+
+                    <!-- Description beside Video -->
+                    <div class="col-12 col-xl-6">
+                        <div class="card__description card__description--details" style="color: rgba(255, 255, 255, 0.7);">
+                            {{ post.description }}
+                        </div>
+                    </div>
+                </div>
+                <!-- End Player Section -->
+
+                <!-- Share Section -->
+                <div class="col-12">
+                    <div class="details__wrap">
+                        <div class="details__share">
+                            <strong class="details__share-title">Share with friends:</strong>
+                            <div class="contact-social">
+                                <div class="contact-social-links">
+                                    <a href="#" class="contact-social-link"><i class="icon ion-logo-instagram"></i></a>
+                                    <a href="#" class="contact-social-link"><i class="icon ion-logo-github"></i></a>
+                                    <a href="#" class="contact-social-link"><i class="icon ion-logo-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Share Section -->
+            </div>
+        </div>
+        <!-- End Details Content -->
+    </section>
+    <!-- End Details Section -->
+
+    <!---------------------- Content Section --------------------->
+
+    <section class="content">
+
+        <!-- Content Head -->
+        <div class="content__head">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+
+                        <!-- Content Title -->
+                        <h2 class="content__title">Discover</h2>
+                        <!-- End Content Title -->
+
+                        <!-- Tabs Navigation -->
+                        <ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Comments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a>
+                            </li>
+                        </ul>
+                        <!-- End Tabs Navigation -->
+
+                        <!-- Mobile Tabs Navigation -->
+                        <div class="content__mobile-tabs" id="content__mobile-tabs">
+                            <div class="content__mobile-tabs-btn dropdown-toggle" role="navigation" id="mobile-tabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <input type="button" value="Comments">
+                                <span></span>
+                            </div>
+                            <div class="content__mobile-tabs-menu dropdown-menu" aria-labelledby="mobile-tabs">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Comments</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Mobile Tabs Navigation -->
+
                     </div>
                 </div>
             </div>
-        {% empty %}
-            <p class="col-12">No posts available.</p>
-        {% endfor %}
-        <!-- end card -->
-    </div>
-</div>
-<!-- end sidebar -->
+        </div>
+        <!-- End Content Head -->
 
-			</div>
-		</div>
-	</section>
+        <div class="container">
+            <div class="row">
 
-	<!---------------------- end content ---------------------->
+                <!-- Comments Section -->
+                <div class="col-12 col-lg-8 col-xl-8">
+                    <div class="tab-content" id="myTabContent">
 
+                        <!-- Comments Tab -->
+                        <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="comments">
+                                        <ul class="comments__list">
 
+                                            {% for comment in comments %}
+                                                <li class="comments__item">
+                                                    <div class="comments__autor">
+                                                        {% if comment.user.profile_image %}
+                                                            <img class="comments__avatar" src="{{ comment.user.profile_image.url }}" alt="{{ comment.user.username }}">
+                                                        {% else %}
+                                                            <img class="comments__avatar" src="{% static 'img/avatar.png' %}" alt="{{ comment.user.username }}">
+                                                        {% endif %}
+                                                        <span class="comments__name">{{ comment.user.get_full_name | default:comment.user.username }}</span>
+                                                        <span class="comments__time">{{ comment.created_at|date:"d.m.Y, H:i" }}</span>
+                                                    </div>
+                                                    <p class="comments__text">{{ comment.content }}</p>
+                                                    <div class="comments__actions">
+                                                        <div class="comments__rate"></div>
+                                                        {% if user.is_authenticated %}
+                                                            <button onclick="set_value({{ comment.id }})" type="button">
+                                                                <i class="icon ion-ios-share-alt"></i>Reply
+                                                            </button>
+                                                        {% endif %}
+                                                    </div>
+                                                </li>
 
-  <!---------------------- end details --------------------->
+                                                {% for reply in comment.replies.all %}
+                                                    <li class="comments__item comments__item--answer" data-comment-id="{{ reply.id }}">
+                                                        <div class="comments__autor">
+                                                            {% if reply.user.profile_image %}
+                                                                <img class="comments__avatar" src="{{ reply.user.profile_image.url }}" alt="{{ reply.user.username }}">
+                                                            {% else %}
+                                                                <img class="comments__avatar" src="{% static 'img/avatar.png' %}" alt="{{ reply.user.username }}">
+                                                            {% endif %}
+                                                            <span class="comments__name">{{ reply.user.get_full_name | default:reply.user.username }}</span>
+                                                            <span class="comments__time">{{ reply.created_at|date:"d.m.Y, H:i" }}</span>
+                                                        </div>
+                                                        <p class="comments__text">{{ reply.content }}</p>
+                                                    </li>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </ul>
+
+                                        <!-- Comment Form -->
+                                        <form action="{% url 'post:add_comment' post.id %}" class="form" method="post">
+                                            {% csrf_token %}
+                                            {% if user.is_authenticated %}
+                                                <input type="hidden" id="parent_id" name="parent_id">
+                                                <textarea id="text" name="text" class="form__textarea" placeholder="Add comment"></textarea>
+                                                <button type="submit" class="form__btn">Send</button>
+                                            {% else %}
+                                                <strong style="color: rgba(255, 255, 255, 0.7);">
+                                                    Hey! You need to 
+                                                    <a href="{% url 'account:login' %}" style="color: #ff5860;"> LOGIN </a>
+                                                    before commenting.
+                                                </strong>
+                                            {% endif %}
+                                        </form>
+                                        <!-- End Comment Form -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Comments Tab -->
+
+                        <!-- Photos Tab -->
+                        <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="3-tab">
+                            <div class="gallery" itemscope>
+                                <div class="row">
+                                    {% for photo in photos %}
+                                        <figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
+                                            <a href="{{ photo.image.url }}" itemprop="contentUrl" data-size="1920x1280">
+                                                <img src="{{ photo.image.url }}" itemprop="thumbnail" alt="Image description" />
+                                            </a>
+                                            <figcaption itemprop="caption description">Some image caption 1</figcaption>
+                                        </figure>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Photos Tab -->
+                    </div>
+                </div>
+                <!-- End Comments Section -->
+
+                <!-- Sidebar Section -->
+                <div class="col-12 col-lg-4 col-xl-4">
+                    <div class="row">
+
+                        <!-- Sidebar Title -->
+                        <div class="col-12">
+                            <h2 class="section__title section__title--sidebar">You may also like...</h2>
+                        </div>
+                        <!-- End Sidebar Title -->
+
+                        <!-- Sidebar Cards -->
+                        {% for post in posts %}
+                            <div class="col-6 col-sm-4 col-lg-6">
+                                <div class="card">
+                                    <div class="card__cover">
+                                        <img src="{{ post.cover.url }}" alt="{{ post.title }}">
+                                        <a href="{% url 'post:post_details' slug=post.slug %}" class="card__play">
+                                            <i class="icon ion-ios-play"></i>
+                                        </a>
+                                    </div>
+                                    <div class="card__content">
+                                        <h3 class="card__title">
+                                            <a href="{% url 'post:post_details' slug=post.slug %}">{{ post.title }}</a>
+                                        </h3>
+                                        <span class="card__category">
+                                            {% with category=post.category.all|first %}
+                                                {% if category %}
+                                                    <a href="{% url 'post:post_category' slug=category.slug %}">{{ category.title }}</a>
+                                                {% endif %}
+                                            {% endwith %}
+                                        </span>
+                                        <span class="card__rate"><i class="icon ion-ios-star"></i>{{ post.rating }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <p class="col-12">No posts available.</p>
+                        {% endfor %}
+                        <!-- End Sidebar Cards -->
+                    </div>
+                </div>
+                <!-- End Sidebar Section -->
+            </div>
+        </div>
+    </section>
+    <!-- End Content Section -->
+
+<!---------------------- end details --------------------->
 
 {% endblock content %}
-    

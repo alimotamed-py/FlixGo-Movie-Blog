@@ -21,7 +21,7 @@ class Home(ListView):
 
 
 
-
+# ==================== LOAD MORE ====================
 class LoadMorePostsView(View):
     def get(self, request, *args, **kwargs):
         page = int(request.GET.get("page", 1))

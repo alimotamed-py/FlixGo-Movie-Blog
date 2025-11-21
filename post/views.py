@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post, Category, Comment
 
 
+#==================== POST DETAIL ====================
 class PostDetailView(DetailView):
     model = Post
     template_name = 'post/post_details.html'
@@ -16,11 +17,10 @@ class PostDetailView(DetailView):
         context['posts'] = Post.objects.exclude(id=self.object.id).order_by('-created_at')[:4]
         context['comments'] = self.object.comments.filter(parent__isnull=True, active=True)
         context['photos'] = self.object.photos.all()
-
         return context
 
     
-    
+#==================== CATEGORY POST ====================    
 class CategoryPostView(ListView):
     model = Post
     template_name = 'post/post_category.html'
@@ -37,7 +37,7 @@ class CategoryPostView(ListView):
         return context
     
     
-    
+ #==================== COMMENT ====================   
 class CommentView(LoginRequiredMixin, View):
     login_url = 'login'            
     redirect_field_name = 'next'   
@@ -56,8 +56,9 @@ class CommentView(LoginRequiredMixin, View):
             )
 
         return redirect("post:post_details", slug=post.slug)
+
     
-    
+#==================== SEARCH ==================== 
 class SearchView(ListView):
     model = Post
     template_name = 'post/search.html'
@@ -68,12 +69,11 @@ class SearchView(ListView):
         if query:
             results = Post.objects.filter(title__icontains=query)
             if results.count() == 1:
-                # اگر فقط یک نتیجه پیدا شد، ریدایرکت با slug
                 post = results.first()
                 return redirect('post:post_details', slug=post.slug)
             else:
-                # اگر چند نتیجه پیدا شد، لیست رو نمایش بده
-                return self.render_to_response({'results': results, 'query': query})
+                self.object_list = results
+                context = self.get_context_data(object_list=self.object_list, query=query)
+                return self.render_to_response(context)
         else:
-            # اگر ورودی خالی بود، می‌تونی برگردی به صفحه اصلی یا صفحه جستجو
             return redirect('home:home')

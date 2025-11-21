@@ -136,3 +136,5 @@ AUTHENTICATION_BACKENDS = [
     'account.authentication.PhoneAuthBackend',
     'account.authentication.EmailAuthBackend',
 ]
+
+LOGIN_URL = '/account/login'

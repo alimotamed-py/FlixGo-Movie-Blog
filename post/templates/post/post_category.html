@@ -6,108 +6,118 @@
 {% block home %}{% endblock %}
 
 {% block content %}
-  <!-- page title -->
-  <section class="section section--first section--bg" data-bg="{% static 'img/section/section.jpg' %}">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="section__wrap">
-            <!-- section title -->
-            <h2 class="section__title">{{ category.title }}</h2>
-            <!-- end section title -->
 
-            <!-- breadcrumb -->
-            <ul class="breadcrumb">
-              <li class="breadcrumb__item">
-                <a href="{% url 'home:home' %}">Home</a>
-              </li>
-              <li class="breadcrumb__item breadcrumb__item--active">{{ category.title }}</li>
-            </ul>
-            <!-- end breadcrumb -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end page title -->
+    <!-- Page Title Section -->
+    <section class="section section--first section--bg" data-bg="{% static 'img/section/section.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section__wrap">
 
-  <!-- filter -->
-  <div class="filter">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="filter__content">
-            <div class="filter__items">
-              <!-- می‌تونی آیتم‌های فیلتر رو اینجا اضافه کنی -->
+                        <!-- Section Title -->
+                        <h2 class="section__title">{{ category.title }}</h2>
+                        <!-- End Section Title -->
+
+                        <!-- Breadcrumb -->
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb__item">
+                                <a href="{% url 'home:home' %}">Home</a>
+                            </li>
+                            <li class="breadcrumb__item breadcrumb__item--active">{{ category.title }}</li>
+                        </ul>
+                        <!-- End Breadcrumb -->
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <!-- end filter -->
+    </section>
+    <!-- End Page Title Section -->
 
-  <!-- catalog -->
-  <div class="catalog">
-    <div class="container">
-      <div class="row">
-        {% for post in posts %}
-          <!-- card -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card">
-              <div class="card__cover">
-                <img src="{{ post.cover.url }}" alt="{{ post.title }}" />
-                <a href="{% url 'post:post_details' slug=post.slug %}" class="card__play">
-                  <i class="icon ion-ios-play"></i>
-                </a>
-              </div>
-              <div class="card__content">
-                <h3 class="card__title">
-                  <a href="{% url 'post:post_details' slug=post.slug %}">{{ post.title }}</a>
-                </h3>
-                <span class="card__rate">
-                  <i class="icon ion-ios-star"></i>{{ post.rating }}
-                </span>
-              </div>
+    <!-- Filter Section -->
+    <div class="filter">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="filter__content">
+                        <div class="filter__items">
+                            <!-- You can add filter items here -->
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <!-- end card -->
-        {% endfor %}
-
-        <!-- paginator -->
-        <div class="col-12">
-          {% if is_paginated %}
-            <ul class="paginator">
-              <!-- دکمه قبلی -->
-              {% if page_obj.has_previous %}
-                <li class="paginator__item paginator__item--prev">
-                  <a href="?page={{ page_obj.previous_page_number }}">
-                    <i class="icon ion-ios-arrow-back"></i>
-                  </a>
-                </li>
-              {% endif %}
-
-              <!-- شماره صفحات داینامیک -->
-              {% for num in paginator.page_range %}
-                <li class="paginator__item {% if page_obj.number == num %}paginator__item--active{% endif %}">
-                  <a href="?page={{ num }}">{{ num }}</a>
-                </li>
-              {% endfor %}
-
-              <!-- دکمه بعدی -->
-              {% if page_obj.has_next %}
-                <li class="paginator__item paginator__item--next">
-                  <a href="?page={{ page_obj.next_page_number }}">
-                    <i class="icon ion-ios-arrow-forward"></i>
-                  </a>
-                </li>
-              {% endif %}
-            </ul>
-          {% endif %}
         </div>
-        <!-- end paginator -->
-      </div>
     </div>
-  </div>
-  <!-- end catalog -->
+    <!-- End Filter Section -->
+
+    <!-- Catalog Section -->
+    <div class="catalog">
+        <div class="container">
+            <div class="row">
+
+                {% for post in posts %}
+                    <!-- Card -->
+                    <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                        <div class="card">
+
+                            <!-- Card Cover -->
+                            <div class="card__cover">
+                                <img src="{{ post.cover.url }}" alt="{{ post.title }}" />
+                                <a href="{% url 'post:post_details' slug=post.slug %}" class="card__play">
+                                    <i class="icon ion-ios-play"></i>
+                                </a>
+                            </div>
+                            <!-- End Card Cover -->
+
+                            <!-- Card Content -->
+                            <div class="card__content">
+                                <h3 class="card__title">
+                                    <a href="{% url 'post:post_details' slug=post.slug %}">{{ post.title }}</a>
+                                </h3>
+                                <span class="card__rate">
+                                    <i class="icon ion-ios-star"></i>{{ post.rating }}
+                                </span>
+                            </div>
+                            <!-- End Card Content -->
+                        </div>
+                    </div>
+                    <!-- End Card -->
+                {% endfor %}
+
+                <!-- Paginator -->
+                <div class="col-12">
+                    {% if is_paginated %}
+                        <ul class="paginator">
+
+                            <!-- Previous Page Button -->
+                            {% if page_obj.has_previous %}
+                                <li class="paginator__item paginator__item--prev">
+                                    <a href="?page={{ page_obj.previous_page_number }}">
+                                        <i class="icon ion-ios-arrow-back"></i>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            <!-- Page Numbers -->
+                            {% for num in paginator.page_range %}
+                                <li class="paginator__item {% if page_obj.number == num %}paginator__item--active{% endif %}">
+                                    <a href="?page={{ num }}">{{ num }}</a>
+                                </li>
+                            {% endfor %}
+
+                            <!-- Next Page Button -->
+                            {% if page_obj.has_next %}
+                                <li class="paginator__item paginator__item--next">
+                                    <a href="?page={{ page_obj.next_page_number }}">
+                                        <i class="icon ion-ios-arrow-forward"></i>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <!-- End Paginator -->
+            </div>
+        </div>
+    </div>
+    <!-- End Catalog Section -->
 {% endblock %}

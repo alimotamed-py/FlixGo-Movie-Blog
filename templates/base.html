@@ -6,8 +6,11 @@
       {% include 'includes/head_refrences.html' %}
     {% endblock %}
     <title>{% block title %}{% endblock %}</title>
+    
   </head>
+
   <body class="body">
+    {% include 'includes/messages.html' %}
     <!----------------------- header ---------------------->
     {% block header %}
       {% include 'includes/header.html' %}

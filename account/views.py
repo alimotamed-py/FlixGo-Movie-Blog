@@ -2,13 +2,20 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.views import View
 from .forms import *
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class UserLogin(View):
-    def get(self, request):
+
+
+#==================== USER LOGIN ====================
+class UserLoginView(View):
+    
+    def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('home:home')
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get(self, request):
         form = LoginForm()
         return render(request, 'account/login.html', {'form': form})
     
@@ -19,14 +26,23 @@ class UserLogin(View):
             user = authenticate(username=cd['email'], password=cd['password'])
             if user is not None:
                 login(request, user)
+                messages.success(request, 'you logged in successfully', 'success')
                 return redirect('/')
             else:
                 form.add_error(None, "Invalid email or password")
+                messages.error(request, 'username or password is wrong', 'warning')
         return render(request, 'account/login.html', {'form': form})
 
     
-
-class UserRegister(View):
+#==================== USER REGISTER ====================
+class UserRegisterView(View):
+    
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('home:home')
+        return super().dispatch(request, *args, **kwargs)
+    
+    
     def get(self, request):
         form = RegisterForm()
         return render(request, 'account/register.html', {'form': form})
@@ -47,19 +63,21 @@ class UserRegister(View):
 
             if user is not None:
                 login(request, user)
+                messages.success(request, 'you registered in successfully', 'success')
                 return redirect('/')
-
         return render(request, 'account/register.html', {'form': form})
 
 
-class UserLogout(View):
+#==================== USER LOGOUT ====================
+class UserLogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
+        messages.success(request, 'you logged out successfully')
         return redirect('home:home') 
+  
     
-    
-@method_decorator(login_required, name='dispatch')
-class UserProfile(View):
+#==================== USER PROFILE ====================   
+class UserProfileView(LoginRequiredMixin, View):
     template_name = 'account/profile.html'
 
     def get(self, request):

@@ -2,7 +2,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -32,78 +33,88 @@
     <meta name="keywords" content="" />
     <meta name="author" content="Dmitry Volkov" />
     
-	<title>Register</title>
-		
+    <title>Register</title>
 </head>
+
 <body class="body">
-  <div class="sign section--bg" data-bg="{% static 'img/section/section.jpg' %}">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="sign__content">
-            <!-- registration form -->
-            <form method="post" action="{% url 'account:register' %}" class="sign__form">
-              {% csrf_token %}
-              <a href="{% url 'home:home' %}" class="sign__logo">
-                <img src="{% static 'img/logo.svg' %}" alt="home" />
-              </a>
 
-              <div class="sign__group">
-                {{ form.username }}
-                {% for error in form.username.errors %}
-                  <div class="sign__error">{{ error }}</div>
-                {% endfor %}
-              </div>
+    <!-- Sign Section with Background -->
+    <div class="sign section--bg" data-bg="{% static 'img/section/section.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="sign__content">
 
-              <div class="sign__group">
-                {{ form.email }}
-                {% for error in form.email.errors %}
-                  <div class="sign__error">{{ error }}</div>
-                {% endfor %}
-              </div>
+                        <!-- Registration Form -->
+                        <form method="post" action="{% url 'account:register' %}" class="sign__form">
+                            {% csrf_token %}
 
-              <div class="sign__group">
-                {{ form.phone_number }}
-                {% for error in form.phone_number.errors %}
-                  <div class="sign__error">{{ error }}</div>
-                {% endfor %}
-              </div>
+                            <!-- Logo -->
+                            <a href="{% url 'home:home' %}" class="sign__logo">
+                                <img src="{% static 'img/logo.svg' %}" alt="home" />
+                            </a>
 
-              <div class="sign__group">
-                {{ form.password }}
-                {% for error in form.password.errors %}
-                  <div class="sign__error">{{ error }}</div>
-                {% endfor %}
-              </div>
+                            <!-- Username Input -->
+                            <div class="sign__group">
+                                {{ form.username }}
+                                {% for error in form.username.errors %}
+                                    <div class="sign__error">{{ error }}</div>
+                                {% endfor %}
+                            </div>
 
-              <div class="sign__group">
-                {{ form.password_repeat }}
-                {% for error in form.password_repeat.errors %}
-                  <div class="sign__error">{{ error }}</div>
-                {% endfor %}
-              </div>
+                            <!-- Email Input -->
+                            <div class="sign__group">
+                                {{ form.email }}
+                                {% for error in form.email.errors %}
+                                    <div class="sign__error">{{ error }}</div>
+                                {% endfor %}
+                            </div>
 
-              <div class="sign__group sign__group--checkbox">
-                <input id="remember" name="remember" type="checkbox" checked="checked" />
-                <label for="remember">I agree to the <a href="#">Privacy Policy</a></label>
-              </div>
+                            <!-- Phone Number Input -->
+                            <div class="sign__group">
+                                {{ form.phone_number }}
+                                {% for error in form.phone_number.errors %}
+                                    <div class="sign__error">{{ error }}</div>
+                                {% endfor %}
+                            </div>
 
-              <button class="sign__btn" type="submit">Register</button>
+                            <!-- Password Input -->
+                            <div class="sign__group">
+                                {{ form.password }}
+                                {% for error in form.password.errors %}
+                                    <div class="sign__error">{{ error }}</div>
+                                {% endfor %}
+                            </div>
 
-              <span class="sign__text">
-                Already have an account? <a href="{% url 'account:login' %}">Login!</a>
-              </span>
-            </form>
-            <!-- registration form -->
-          </div>
+                            <!-- Repeat Password Input -->
+                            <div class="sign__group">
+                                {{ form.password_repeat }}
+                                {% for error in form.password_repeat.errors %}
+                                    <div class="sign__error">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <!-- Privacy Policy Checkbox -->
+                            <div class="sign__group sign__group--checkbox">
+                                <input id="remember" name="remember" type="checkbox" checked="checked" />
+                                <label for="remember">I agree to the <a href="#">Privacy Policy</a></label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button class="sign__btn" type="submit">Register</button>
+
+                            <!-- Link to Login -->
+                            <span class="sign__text">
+                                Already have an account? <a href="{% url 'account:login' %}">Login!</a>
+                            </span>
+                        </form>
+                        <!-- End Registration Form -->
+
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-
-  
-</body>
-
 
     <!-- JS -->
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
@@ -118,5 +129,6 @@
     <script src="{% static 'js/photoswipe.min.js' %}"></script>
     <script src="{% static 'js/photoswipe-ui-default.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+
 </body>
 </html>
