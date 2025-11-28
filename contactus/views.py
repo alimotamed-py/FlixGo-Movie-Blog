@@ -8,7 +8,6 @@ class ContactUsView(FormView):
     success_url = reverse_lazy('contact:contact') 
 
     def form_valid(self, form):
-        print("Form submitted!")  
         form.save()  
         return super().form_valid(form)
 
