@@ -63,7 +63,7 @@ Copy code
 🙏 Template Source / Credits
 The UI of this project is based on the template from:
 
-ybnthicco/flixgo   https://github.com/ybnthicco/flixgo
+ybnthicco/flixgo   https://github.com/ybnthicco/flixgo ❤️
 
 Thanks to the template creator for making it available as open-source ❤️
 

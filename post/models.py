@@ -4,7 +4,7 @@ from django.conf import settings
 from account.models import User
 
 
-
+# ==================== CATEGORY ====================
 class Category(models.Model):
     title = models.CharField(max_length=20, blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
@@ -18,6 +18,7 @@ class Category(models.Model):
         return self.title
 
 
+# ==================== POST MODEL ====================
 class Post(models.Model):
     title = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
@@ -73,6 +74,8 @@ class Photo(models.Model):
     image = models.ImageField(upload_to='posts/photos/')
 
 
+
+# ==================== COMMENT MODEL ====================
 class Comment(models.Model):
     post = models.ForeignKey(
         'Post',

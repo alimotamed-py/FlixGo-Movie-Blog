@@ -4,6 +4,7 @@ from .models import *
 from .models import User
 
 
+# ==================== LOGIN FORM ====================
 class LoginForm(forms.Form):
     email = forms.EmailField(label='Email', required=True,
                                widget=forms.EmailInput(attrs={'class':'sign__input', 'placeholder' : 'Email'}))
@@ -12,7 +13,7 @@ class LoginForm(forms.Form):
 
 
 
-
+# ==================== REGISTER FORM ====================
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'sign__input', 'placeholder': 'Password'}),
@@ -79,7 +80,7 @@ class RegisterForm(forms.ModelForm):
         return user
 
 
-
+# ==================== PROFILE FORM ====================
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = User

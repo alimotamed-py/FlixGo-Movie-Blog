@@ -6,6 +6,7 @@ from django.views import View
 from django.core.paginator import Paginator
 
 
+# ==================== HOME ====================
 class Home(ListView):
     model = Post
     template_name = "home/home.html"

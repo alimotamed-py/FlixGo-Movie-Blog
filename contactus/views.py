@@ -2,6 +2,9 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from .forms import ContactUsForm
 
+
+
+# ==================== CONTACT US VIEW ====================
 class ContactUsView(FormView):
     template_name = "contactus/contact.html"
     form_class = ContactUsForm
